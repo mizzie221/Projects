@@ -1,0 +1,209 @@
+#include <iostream>
+#include <stdlib.h>
+#include <string>
+#include <ctime>
+
+using namespace std;
+int health = 100;
+int opponent_health = 100;
+int turn = rand() % 2 + 1;
+
+void sleep(float seconds){
+    clock_t startClock = clock();
+    float secondsAhead = seconds * CLOCKS_PER_SEC;
+    // do nothing until the elapsed time has passed.
+    while(clock() < startClock+secondsAhead);
+    return;
+}
+
+void character(int fighter){
+  if(fighter == 1){
+    cout << "Opponent: Michael\n";
+  }else if(fighter == 2){
+    cout << "Opponent: Jose\n";
+  }else if(fighter == 3){
+    cout << "Opponent: Timo\n";
+  }else if(fighter == 4){
+    cout << "Opponent: Jack\n";
+  }else if(fighter == 5){
+      cout << "Opponent: Manny\n";
+  }else if(fighter == 6){
+    cout << "Opponent: Scottie\n";
+  }else if(fighter == 7){
+  cout << "Opponent: Aaron\n";
+  }else if(fighter == 8){
+    cout << "Opponent: Sarah\n";
+  }else if(fighter == 9){
+    cout << "Opponent: Jessica\n";
+  }else if(fighter == 10){
+    cout << "Opponent: Beth\n";
+  }else if(fighter == 11){
+    cout << "Opponent: Eli\n";
+  }else if(fighter == 12){
+    cout << "Opponent: Jakobi\n";
+  }else if(fighter == 13){
+    cout << "Opponent: Devin\n";
+  }else if(fighter == 14){
+    cout << "Opponent: Gaby\n";
+  }else if(fighter == 15){
+    cout << "Opponent: Sophia\n";
+  }else if(fighter == 16){
+    cout << "Opponent: Diana\n";
+  }else if(fighter == 17){
+    cout << "Opponent: Ja\n";
+  }else if(fighter == 18){
+    cout << "Opponent: Jayson\n";
+  }else if(fighter == 19){
+    cout << "Opponent: Derrek";
+  }else if(fighter == 20){
+    cout << "Opponent: Anton\n";
+  }
+}
+
+void user_turn(int move){
+  srand(time(NULL));
+  int turn = rand() % 2 + 1;
+  int computer = 0;
+  cout << "\n----------------------------------------------------------------------------------------------\n\n";
+  cout << "\nIt is your move!\n";
+  cout << "Choose where you would like to move.\n\n";
+  cout << "1) Left\n";
+  cout << "2) Right\n";
+  cout << "3) Middle\n";
+  cout << "\n----------------------------------------------------------------------------------------------\n\n";
+  if(move < 4){
+    computer = rand() % 3 + 1;
+    if(move == computer){
+      opponent_health = opponent_health - 20;
+      cout << "\nYou hit the opponent! 20 points will be deducted from their health\n";
+      cout << "Opponent Health: " << opponent_health << "\n\n";
+      sleep(1.0);
+    }else{
+      cout << "The opponent was able to dodge your attack\n";
+      sleep(1.0);
+    } 
+    turn = 2;
+  }else{
+    cout << "Invalid Move, Try Again\n";
+    sleep(1.0);
+  }
+}
+
+int main(){
+  cout << "----------------------------------\n";
+  cout << "Welcome to Minh's Text Adventure!\n";
+  cout << "----------------------------------\n\n";
+
+  int start = 0;
+  cout << "Press 1 to start the game!\n";
+
+  srand(time(NULL));
+  int com_moves = 0;
+  int turn = rand() % 2 + 1;
+  int move = 0;
+  int d_move = 0;
+  int fans = 0;
+
+  cin >> start;
+  
+  if(start == 1){
+    cout << "\n";
+    cout << "----------------------------------------------------------------------------------------------\n\n";
+    cout << "Welcome to the 'World of Pseudo-Boxing'! In this world, the primary focus is the game of Pseudo-Boxing. Pseudo-Boxing is a competitive game where players have to use their wits to outsmart your opponent. In this game, the user has 3 options to choose from, Left, Right, Middle. If you are able to guess where your opponent will move their head next, health is deducted from the opponent. This is a game of 1 versus 1, so the opponent will be allowed to attack you as well. The first person to make their opponent reach 0 health wins the game. You are able to play the game 20 times, with your total amount of fans displayed at the end. Win all 20 games to reach the highest score!\n\n";
+    cout << "\n----------------------------------------------------------------------------------------------\n\n";
+    for(int play = 0; play < 20; play++){
+        cout << "In this world you are an unknown character, who is desperate to make a name for themselves through their skills. As you progress through the fights and win more, you will continue to gain more fans and reach your goal of worldwide recognition. Each fight will up your notoriety, so make sure to keep winning.\n\n"; 
+
+        cout << "Would you to like to begin?\n";
+        cout << "Please input [1 for Yes] or [2 for No]\n\n";
+        int choice;
+        cin >> choice;
+        cout << "\n----------------------------------------------------------------------------------------------\n\n";
+        if(choice == 1){
+          int fighter = rand() % 20 + 1;
+          character(fighter);
+          cout << "Fight Commence!\n";
+          while(health != 0 || opponent_health != 0){
+            if(turn == 1){
+              cin >> move;
+              user_turn(move);
+              turn = 2;
+            }else{
+              cout << "\n----------------------------------------------------------------------------------------------\n\n";
+              cout << "It is the opponents move!\n";
+              cout << "Choose where you would like to move\n\n";
+              cout << "1) Left\n";
+              cout << "2) Right\n";
+              cout << "3) Middle\n";
+              cout << "\n----------------------------------------------------------------------------------------------\n\n";
+              cin >> d_move;
+              if(d_move > 3){
+                cout << "Invalid Input, Try Again\n";
+              }
+              com_moves = rand() % 3 + 1;
+              if(com_moves == d_move){
+                health = health - 20;
+                cout << "\nYour opponent was able to land a hit. 20 points will be deducted from your health\n";
+                cout << "Health: " << health << "\n";
+                sleep(1.0);
+              }else{
+                cout << "\nWhew! you were able to dodge the attack\n";
+                sleep(1.0);
+              }
+              turn = 1;
+            }
+            if(health == 0){
+              int con = 0;
+              cout << "You Lost!\n";
+              cout << "Improve and come back!\n";
+              cout << "\nWould you like to continue? (1 for Yes or 2 for No)\n";
+              cin >> con;
+              if(con == 1){
+                health = 100;
+                continue;
+              }else if(con == 2){
+                cout << "\n\nYou finished with " << fans << " fans!\n";
+                abort();
+              }
+            }else if(opponent_health == 0){
+              fans = fans + 10000;
+              cout << "Congratulations you won!\n";
+              cout << "You were able to gain 10,000 fans\n";
+              cout << "Fan Count: " << fans << "\n";
+              int con = 0;
+              cout << "Would you like to continue? (1 for Yes or 2 for No)\n";
+              cin >> con;
+              if(con == 1){
+                opponent_health = 100;
+                continue;
+              }else if(con == 2){
+                cout << "\n\nThank you for playing, you were able to gain " << fans << " fans.\n";
+                abort();
+              }
+            }
+          }
+        }else{
+          cout << "Come back when you are ready\n\n";
+        }
+      }
+    }else{
+      cout << "Goodbye!";
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
