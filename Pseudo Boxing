@@ -188,9 +188,11 @@ void user_turn(int move){
       cout << "You hit the opponent! 20 points will be deducted from their health\n";
       cout << "Opponent Health: " << opponent_health << "\n\n";
       sleep(1.0);
+      sys("clear");
     }else{
       cout << "\nThe opponent was able to dodge your attack\n";
       sleep(1.0);
+      sys("clear");
     } 
     turn = 2;
   }else{
@@ -224,9 +226,11 @@ void computer_turn(int move){
       cout << "Your opponent was able to land a hit. 20 points will be deducted from your health\n";
       cout << "Health: " << health << "\n";
       sleep(1.0);
+      sys("clear");
     }else{
       cout << "\nWhew! you were able to dodge the attack\n";
       sleep(1.0);
+      sys("clear");
     }
   }else{
     cout << "Invalid Move, Try Again\n";
