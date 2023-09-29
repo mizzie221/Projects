@@ -4,11 +4,6 @@
 
 using namespace std;
 char game[10] = {'0','1','2','3','4','5','6','7','8','9'};
-int row;
-int column;
-char token = 'X';
-string p1;
-string p2;
 
 void switch_turns(int change);
 void sleep(float seconds);
@@ -17,7 +12,9 @@ int checkwin();
 
 int main(){
   srand(time(NULL));
-  int turn = 1;
+  int turn = rand() % 2 + 1;
+  string p1;
+  string p2;
 
   system("clear");
   cout << "Welcome to Tic Tac Toe!!\n\n";
@@ -31,7 +28,8 @@ int main(){
 
   int change = turn;
   int choice;
-  while(checkwin() != 1){
+
+  while(checkwin() == -1){
     if(turn == 1){
       //system("clear");
       cout << " Tic Tac Toe\n";
@@ -43,7 +41,7 @@ int main(){
         system("clear");
         if(choice == 1){
           if(game[1] == '1'){
-            game[1] = 'X';
+            game[1] = 'x';
             display();
             system("clear");
             change = 2;
@@ -53,7 +51,7 @@ int main(){
           } 
         }else if(choice == 2){
           if(game[2] == '2'){
-            game[2] = 'X';
+            game[2] = 'x';
             change = 2;
           }else{
             cout << "That spot is taken, Try Again\n";
@@ -61,7 +59,55 @@ int main(){
           }
         }else if(choice == 3){
           if(game[3] == '3'){
-            game[3] = 'X';
+            game[3] = 'x';
+            change = 2;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 1;
+          }
+        }else if(choice == 4){
+          if(game[4] == '4'){
+            game[4] = 'x';
+            change = 2;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 1;
+          }
+        }else if(choice == 5){
+          if(game[5] == '5'){
+            game[5] = 'x';
+            change = 2;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 1;
+          }
+        }else if(choice == 6){
+          if(game[6] == '6'){
+            game[6] = 'x';
+            change = 2;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 1;
+          }
+        }else if(choice == 7){
+          if(game[7] == '7'){
+            game[7] = 'x';
+            change = 2;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 1;
+          }
+        }else if(choice == 8){
+          if(game[8] == '8'){
+            game[8] = 'x';
+            change = 2;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 1;
+          }
+        }else if(choice == 9){
+          if(game[9] == '9'){
+            game[9] = 'x';
             change = 2;
           }else{
             cout << "That spot is taken, Try Again\n";
@@ -75,7 +121,7 @@ int main(){
           system("clear");
           if(choice == 1){
             if(game[1] == '1'){
-              game[1] = 'O';
+              game[1] = 'o';
               display();
               system("clear");
               change = 1;
@@ -83,15 +129,256 @@ int main(){
               cout << "That spot is taken, Try Again\n\n";
               change = 2;
             } 
-          }
+          }else if(choice == 2){
+            if(game[2] == '2'){
+              game[2] = 'o';
+              change = 1;
+            }else{
+              cout << "That spot is taken, Try Again\n";
+              change = 2;
+            }
+            }else if(choice == 3){
+              if(game[3] == '3'){
+                game[3] = 'o';
+                change = 1;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 2;
+              }
+            }else if(choice == 4){
+              if(game[4] == '4'){
+                game[4] = 'o';
+                change = 1;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 2;
+              }
+            }else if(choice == 5){
+              if(game[5] == '5'){
+                game[5] = 'o';
+                change = 1;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 2;
+              }
+            }else if(choice == 6){
+              if(game[6] == '6'){
+                game[6] = 'o';
+                change = 1;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 2;
+              }
+            }else if(choice == 7){
+              if(game[7] == '7'){
+                game[7] = 'o';
+                change = 1;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 2;
+              }
+            }else if(choice == 8){
+              if(game[8] == '8'){
+                game[8] = 'o';
+                change = 1;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 2;
+              }
+            }else if(choice == 9){
+              if(game[9] == '9'){
+                game[9] = 'o';
+                change = 1;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 2;
+              }
+            }
         }
     }else{
-      cout << p2 << " will go first\n";
-      sleep(2.0);
+      //sleep(2.0);
       //system("clear");
       cout << "\n Tic Tac Toe\n\n";
       cout << "\n" << p2 << " (X) - " << p1 << " (O)" << "\n\n";
+      if(change == 2){
+        display();
+        cout << p2 << ", Please Select a Number\n";
+        cin >> choice;
+        system("clear");
+        if(choice == 1){
+          if(game[1] == '1'){
+            game[1] = 'x';
+            display();
+            system("clear");
+            change = 1;
+          }else{
+            cout << "That spot is taken, Try Again\n\n";
+            change = 2;
+          } 
+        }else if(choice == 2){
+          if(game[2] == '2'){
+            game[2] = 'x';
+            change = 1;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 2;
+          }
+        }else if(choice == 3){
+          if(game[3] == '3'){
+            game[3] = 'x';
+            change = 1;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 2;
+          }
+        }else if(choice == 4){
+          if(game[4] == '4'){
+            game[4] = 'x';
+            change = 1;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 2;
+          }
+        }else if(choice == 5){
+          if(game[5] == '5'){
+            game[5] = 'x';
+            change = 1;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 2;
+          }
+        }else if(choice == 6){
+          if(game[6] == '6'){
+            game[6] = 'x';
+            change = 1;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 2;
+          }
+        }else if(choice == 7){
+          if(game[7] == '7'){
+            game[7] = 'x';
+            change = 1;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 2;
+          }
+        }else if(choice == 8){
+          if(game[8] == '8'){
+            game[8] = 'x';
+            change = 1;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 2;
+          }
+        }else if(choice == 9){
+          if(game[9] == '9'){
+            game[9] = 'x';
+            change = 1;
+          }else{
+            cout << "That spot is taken, Try Again\n";
+            change = 2;
+          }
+        }
+      }else if(change == 1){
+          display();
+          cout << p1 << ", Please Select a Number\n";
+          cin >> choice;
+          system("clear");
+          if(choice == 1){
+            if(game[1] == '1'){
+              game[1] = 'o';
+              display();
+              system("clear");
+              change = 2;
+            }else{
+              cout << "That spot is taken, Try Again\n\n";
+              change = 1;
+            } 
+          }else if(choice == 2){
+            if(game[2] == '2'){
+              game[2] = 'o';
+              change = 2;
+            }else{
+              cout << "That spot is taken, Try Again\n";
+              change = 1;
+            }
+            }else if(choice == 3){
+              if(game[3] == '3'){
+                game[3] = 'o';
+                change = 2;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 1;
+              }
+            }else if(choice == 4){
+              if(game[4] == '4'){
+                game[4] = 'o';
+                change = 2;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 1;
+              }
+            }else if(choice == 5){
+              if(game[5] == '5'){
+                game[5] = 'o';
+                change = 2;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 1;
+              }
+            }else if(choice == 6){
+              if(game[6] == '6'){
+                game[6] = 'o';
+                change = 2;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 1;
+              }
+            }else if(choice == 7){
+              if(game[7] == '7'){
+                game[7] = 'o';
+                change = 2;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 1;
+              }
+            }else if(choice == 8){
+              if(game[8] == '8'){
+                game[8] = 'o';
+                change = 2;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 1;
+              }
+            }else if(choice == 9){
+              if(game[9] == '9'){
+                game[9] = 'o';
+                change = 2;
+              }else{
+                cout << "That spot is taken, Try Again\n";
+                change = 1;
+              }
+            }
+        }
     }
+  }
+
+  if(checkwin() == 1 && turn == 1 && change == 2){
+    cout << "Game Over\n\n";
+    cout << p1 << " is the Winner!\n";
+  }else if(checkwin() == 1 && turn == 1 && change == 1){
+    cout << "Game Over\n\n";
+    cout << p2 << "is the Winner!\n";
+  }else if(checkwin() == 1 && turn == 2 && change == 2){
+    cout << "Game Over\n\n";
+    cout << p2 << " is the Winner!\n";
+  }else if(checkwin() == 1 && turn == 2 && change == 1){
+    cout << "Game Over\n\n";
+    cout << p1 << " is the Winner!\n";
+  }else if(checkwin() == 0){
+    cout << "It's a Draw\n";
+    cout << "Please play again!\n";
   }
 
 }
@@ -142,12 +429,9 @@ int checkwin()
         return 1;
     else if (game[3] == game[5] && game[5] == game[7])
         return 1;
-    else if (game[1] != '1' && game[2] != '2' && game[3] != '3' 
-                    && game[4] != '4' && game[5] != '5' && game[6] != '6' 
-                  && game[7] != '7' && game[8] != '8' && game[9] != '9')
+    else if (game[1] != '1' && game[2] != '2' && game[3] != '3' && game[4] != '4' && game[5] != '5' && game[6] != '6' && game[7] != '7' && game[8] != '8' && game[9] != '9')
         return 0;
     else
         return -1;
 }
-
 
