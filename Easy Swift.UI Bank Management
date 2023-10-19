@@ -1,0 +1,84 @@
+struct SwiftBank{
+  //stores the password
+  private let password: String
+
+  //initializer 
+  init(password: String, initialDeposit: Double){
+    self.password = password
+    makeDeposit(ofAmount: initialDeposit)
+  }
+
+  //function that checks if the password entered is correct
+  private func isValid(_ enteredPassword: String) -> Bool{
+    //if correct return true, else return false
+    if enteredPassword == password{
+      return true
+    }else{
+      return false
+    }
+  }
+  
+  //balance of the account
+  private var balance: Double = 0{
+    didSet{
+      displayLowBalanceMessage()
+    }
+  }
+  static let depositBonusRate = 0.01
+
+  //function that calculates the Bonus Rate 
+  private func finalDepositWithBonus(fromInitialDeposit deposit: Double) -> Double {
+    return deposit + (deposit * SwiftBank.depositBonusRate)
+  }
+
+  //function that allows the user to deposit money into their accounts
+  mutating func makeDeposit(ofAmount depositAmount: Double){
+    if depositAmount < 0{
+      print("Invalid amount, can not deposit negative amounts.")
+    }else if depositAmount == 0{
+      print("Can not deposit $0 into your account\n")
+    }else{
+      let depositWithBonus = finalDepositWithBonus(fromInitialDeposit: depositAmount)
+      print("Making a deposit of \(depositAmount) with a bonus rate. The final amount deposited is \(depositWithBonus)\n")
+      balance += depositWithBonus
+    }
+  }
+
+  //displays the amount of money
+  func displayBalance(usingPassword password: String){
+    if isValid(password){
+      print("Your current balance is $\(balance)")
+    }else{
+      print("Error: Invalid password. Cannot retrieve balance.")
+      return
+    }
+  }
+
+  //function that allows the user to withdraw money
+  mutating func makeWithdrawal(ofAmount withdrawalAmount: Double, usingPassword password: String){
+    if withdrawalAmount < 0 {
+      print("You can not withdrawal negative amounts of money from your account.\n")
+    }else if withdrawalAmount == 0 {
+      print("You can not withdraw $0 from your account.\n")
+    }else{
+        if isValid(password){
+        balance -= withdrawalAmount
+        print("Making a $\(withdrawalAmount) withdrawal.\n")
+      }else{
+        print("Error: Invalid password. Cannot make withdrawaln")
+        return
+      }
+    }
+  }
+
+  private func displayLowBalanceMessage() {
+    if balance < 100{
+      print("Alert: Your balance is under $100.")
+    }
+  }
+}
+
+var myAccount = SwiftBank(password: "MP22", initialDeposit: 500)
+myAccount.makeDeposit(ofAmount: 100)
+myAccount.makeWithdrawal(ofAmount: 100, usingPassword: "MP22")
+myAccount.displayBalance(usingPassword: "MP22")
